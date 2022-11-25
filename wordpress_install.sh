@@ -66,16 +66,17 @@ read your_domain
 sudo mkdir -p /var/www/$your_domain
 sudo chown -R $USER:$USER /var/www/$your_domain
 sudo echo '<VirtualHost *:80>' >  /etc/apache2/sites-available/$your_domain.conf
-sudo echo ^ ServerName $your_domain^ >> /etc/apache2/sites-available/$your_domain.conf
-sudo echo ^ ServerAlias www.$your_domain^ >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo " ServerName $your_domain" >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo " ServerAlias www.$your_domain" >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' ServerAdmin webmaster@localhost' >> /etc/apache2/sites-available/$your_domain.conf
-sudo echo ^ DocumentRoot /var/www/$your_domain^ >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo " DocumentRoot /var/www/$your_domain" >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' ErrorLog ${APACHE_LOG_DIR}/error.log' >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' CustomLog ${APACHE_LOG_DIR}/access.log combined' >> /etc/apache2/sites-available/$your_domain.conf
-sudo echo ^ <Directory /var/www/$your_domain/>^ >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo " <Directory /var/www/$your_domain/>" >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo '          AllowOverride All' >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' </Directory>' >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo '</VirtualHost>' >> /etc/apache2/sites-available/$your_domain.conf
+
 
 ##### Enable the new virtual host #################
 echo "##### Enable the new virtual host ###########"
