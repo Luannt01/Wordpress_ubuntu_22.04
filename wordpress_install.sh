@@ -121,4 +121,3 @@ echo " * @since 2.6.0" >> /var/www/$your_domain/wp-config.php
 echo " */" >> /var/www/$your_domain/wp-config.php
 echo |curl -s https://api.wordpress.org/secret-key/1.1/salt/ >> /var/www/$your_domain/wp-config.php
 echo "/**#@-*/" >> /var/www/$your_domain/wp-config.php
- 
