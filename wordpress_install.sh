@@ -66,13 +66,13 @@ read your_domain
 sudo mkdir -p /var/www/$your_domain
 sudo chown -R $USER:$USER /var/www/$your_domain
 sudo echo '<VirtualHost *:80>' >  /etc/apache2/sites-available/$your_domain.conf
-sudo echo ' ServerName $your_domain' >> /etc/apache2/sites-available/$your_domain.conf
-sudo echo ' ServerAlias www.$your_domain' >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo ^ ServerName $your_domain^ >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo ^ ServerAlias www.$your_domain^ >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' ServerAdmin webmaster@localhost' >> /etc/apache2/sites-available/$your_domain.conf
-sudo echo ' DocumentRoot /var/www/$your_domain' >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo ^ DocumentRoot /var/www/$your_domain^ >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' ErrorLog ${APACHE_LOG_DIR}/error.log' >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' CustomLog ${APACHE_LOG_DIR}/access.log combined' >> /etc/apache2/sites-available/$your_domain.conf
-sudo echo ' <Directory /var/www/$your_domain/>' >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo ^ <Directory /var/www/$your_domain/>^ >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo '          AllowOverride All' >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' </Directory>' >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo '</VirtualHost>' >> /etc/apache2/sites-available/$your_domain.conf
@@ -113,7 +113,7 @@ echo " * Authentication unique keys and salts." >> /var/www/$your_domain/wp-conf
 echo " *" >> /var/www/$your_domain/wp-config.php
 echo " * Change these to different unique phrases! You can generate these using" >> /var/www/$your_domain/wp-config.php
 echo " * the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}." >> /var/www/$your_domain/wp-config.php
-echo " *" >> /var/www/w$your_domain/wp-config.php
+echo " *" >> /var/www/$your_domain/wp-config.php
 echo " * You can change these at any point in time to invalidate all existing cookies." >> /var/www/$your_domain/wp-config.php
 echo " * This will force all users to have to log in again." >> /var/www/$your_domain/wp-config.php
 echo " *" >> /var/www/$your_domain/wp-config.php
