@@ -63,7 +63,7 @@ sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_passwo
 echo "##### Config Virutal Host ###################"
 echo "##### Input Virtual Host Name ##############"
 read your_domain
-sudo mkdir /var/www/$your_domain
+sudo mkdir -p /var/www/$your_domain
 sudo chown -R $USER:$USER /var/www/$your_domain
 sudo echo '<VirtualHost *:80>' >  /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' ServerName $your_domain' >> /etc/apache2/sites-available/$your_domain.conf
@@ -72,6 +72,9 @@ sudo echo ' ServerAdmin webmaster@localhost' >> /etc/apache2/sites-available/$yo
 sudo echo ' DocumentRoot /var/www/$your_domain' >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' ErrorLog ${APACHE_LOG_DIR}/error.log' >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo ' CustomLog ${APACHE_LOG_DIR}/access.log combined' >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo ' <Directory /var/www/$your_domain/>' >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo '          AllowOverride All' >> /etc/apache2/sites-available/$your_domain.conf
+sudo echo ' </Directory>' >> /etc/apache2/sites-available/$your_domain.conf
 sudo echo '</VirtualHost>' >> /etc/apache2/sites-available/$your_domain.conf
 
 ##### Enable the new virtual host #################
@@ -79,4 +82,43 @@ echo "##### Enable the new virtual host ###########"
 sudo a2ensite $your_domain
 sudo a2dissite 000-default
 sudo apache2ctl configtest
+sudo a2enmod rewrite
 sudo systemctl reload apache2
+
+
+##### Download and install wordpress #################
+echo "##### Download and install wordpress ###########"
+cd /tmp
+curl -O https://wordpress.org/latest.tar.gz
+tar xzvf latest.tar.gz
+touch /tmp/wordpress/.htaccess
+cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
+mkdir /tmp/wordpress/wp-content/upgrade
+sudo cp -a /tmp/wordpress/. /var/www/$your_domain
+
+# Adjusting the Ownership and Permissions wordpress  #
+echo "# Adjusting the Ownership and Permissions wordpress # "
+sudo chown -R www-data:www-data /var/www/$your_domain
+sudo find /var/www/$your_domain/ -type d -exec chmod 750 {} \;
+sudo find /var/www/$your_domain/ -type f -exec chmod 640 {} \;
+
+######### WordPress Configuration File ##############
+echo "##### WordPress Configuration File ###########"
+sed -i "40,60d" /var/www/wordpress/wp-config.php
+sed -i "s/database_name_here/$DATABASE_NAME/g" /var/www/wordpress/wp-config.php
+sed -i "s/username_here'/$DATABASE_USERNAME/g" /var/www/wordpress/wp-config.php
+sed -i "s/password_here/$DATABASE_USERNAME_PASS/g" /var/www/wordpress/wp-config.php
+echo "/**#@+" >> /var/www/wordpress/wp-config.php
+echo " * Authentication unique keys and salts." >> /var/www/wordpress/wp-config.php
+echo " *" >> /var/www/wordpress/wp-config.php
+echo " * Change these to different unique phrases! You can generate these using" >> /var/www/wordpress/wp-config.php
+echo " * the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}." >> /var/www/wordpress/wp-config.php
+echo " *" >> /var/www/wordpress/wp-config.php
+echo " * You can change these at any point in time to invalidate all existing cookies." >> /var/www/wordpress/wp-config.php
+echo " * This will force all users to have to log in again." >> /var/www/wordpress/wp-config.php
+echo " *" >> /var/www/wordpress/wp-config.php
+echo " * @since 2.6.0" >> /var/www/wordpress/wp-config.php
+echo " */" >> /var/www/wordpress/wp-config.php
+echo |curl -s https://api.wordpress.org/secret-key/1.1/salt/ >> /var/www/wordpress/wp-config.php
+echo "/**#@-*/" >> /var/www/wordpress/wp-config.php
+ 
