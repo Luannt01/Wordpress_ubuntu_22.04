@@ -104,21 +104,21 @@ sudo find /var/www/$your_domain/ -type f -exec chmod 640 {} \;
 
 ######### WordPress Configuration File ##############
 echo "##### WordPress Configuration File ###########"
-sed -i "40,60d" /var/www/wordpress/wp-config.php
-sed -i "s/database_name_here/$DATABASE_NAME/g" /var/www/wordpress/wp-config.php
-sed -i "s/username_here'/$DATABASE_USERNAME/g" /var/www/wordpress/wp-config.php
-sed -i "s/password_here/$DATABASE_USERNAME_PASS/g" /var/www/wordpress/wp-config.php
-echo "/**#@+" >> /var/www/wordpress/wp-config.php
-echo " * Authentication unique keys and salts." >> /var/www/wordpress/wp-config.php
-echo " *" >> /var/www/wordpress/wp-config.php
-echo " * Change these to different unique phrases! You can generate these using" >> /var/www/wordpress/wp-config.php
-echo " * the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}." >> /var/www/wordpress/wp-config.php
-echo " *" >> /var/www/wordpress/wp-config.php
-echo " * You can change these at any point in time to invalidate all existing cookies." >> /var/www/wordpress/wp-config.php
-echo " * This will force all users to have to log in again." >> /var/www/wordpress/wp-config.php
-echo " *" >> /var/www/wordpress/wp-config.php
-echo " * @since 2.6.0" >> /var/www/wordpress/wp-config.php
-echo " */" >> /var/www/wordpress/wp-config.php
-echo |curl -s https://api.wordpress.org/secret-key/1.1/salt/ >> /var/www/wordpress/wp-config.php
-echo "/**#@-*/" >> /var/www/wordpress/wp-config.php
+sed -i "40,60d" /var/www/$your_domain/wp-config.php
+sed -i "s/database_name_here/$DATABASE_NAME/g" /var/www/$your_domain/wp-config.php
+sed -i "s/username_here'/$DATABASE_USERNAME/g" /var/www/$your_domain/wp-config.php
+sed -i "s/password_here/$DATABASE_USERNAME_PASS/g" /var/www/$your_domain/wp-config.php
+echo "/**#@+" >> /var/www/$your_domain/wp-config.php
+echo " * Authentication unique keys and salts." >> /var/www/$your_domain/wp-config.php
+echo " *" >> /var/www/$your_domain/wp-config.php
+echo " * Change these to different unique phrases! You can generate these using" >> /var/www/$your_domain/wp-config.php
+echo " * the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}." >> /var/www/$your_domain/wp-config.php
+echo " *" >> /var/www/w$your_domain/wp-config.php
+echo " * You can change these at any point in time to invalidate all existing cookies." >> /var/www/$your_domain/wp-config.php
+echo " * This will force all users to have to log in again." >> /var/www/$your_domain/wp-config.php
+echo " *" >> /var/www/$your_domain/wp-config.php
+echo " * @since 2.6.0" >> /var/www/$your_domain/wp-config.php
+echo " */" >> /var/www/$your_domain/wp-config.php
+echo |curl -s https://api.wordpress.org/secret-key/1.1/salt/ >> /var/www/$your_domain/wp-config.php
+echo "/**#@-*/" >> /var/www/$your_domain/wp-config.php
  
