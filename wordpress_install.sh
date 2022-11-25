@@ -82,8 +82,8 @@ sudo echo '</VirtualHost>' >> /etc/apache2/sites-available/$your_domain.conf
 echo "##### Enable the new virtual host ###########"
 sudo a2ensite $your_domain
 sudo a2dissite 000-default
-sudo apache2ctl configtest
 sudo a2enmod rewrite
+sudo apache2ctl configtest
 sudo systemctl reload apache2
 
 
