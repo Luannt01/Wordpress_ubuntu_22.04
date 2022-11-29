@@ -27,13 +27,13 @@ sudo apt install mysql-server -y
 
 echo "##### Config Mysql For Wordpress ############"
 echo "##### Create New Mysql Passowrd #############"
-read DATABASE_PASS
+read -p "Mysql Passowrd: " DATABASE_PASS
 echo "##### Create WORDPRESS DATABASE #############"
-read DATABASE_NAME
+read -p "Wordpress database name: " DATABASE_NAME
 echo "##### Create WORDPRESS DB_USER ##############"
-read DATABASE_USERNAME
+read -p "Wordpress database username: " DATABASE_USERNAME
 echo "#####  DB_USER PASSWORD #####################"
-read DATABASE_USERNAME_PASS
+read -p "Wordpress database password: " DATABASE_USERNAME_PASS
 
 echo "##############################################################"
 echo "##  Your Mysql root pass is $DATABASE_PASS                 ###"
@@ -61,8 +61,8 @@ sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_passwo
 
 ##### Config Virutal Host #########################
 echo "##### Config Virutal Host ###################"
-echo "##### Input Virtual Host Name ##############"
-read your_domain
+echo "##### Input Virtual Host Name ( IP address or Hostname )##############"
+read -p "Input ip address or hostname: " your_domain
 sudo mkdir -p /var/www/$your_domain
 sudo chown -R $USER:$USER /var/www/$your_domain
 sudo echo '<VirtualHost *:80>' >  /etc/apache2/sites-available/$your_domain.conf
