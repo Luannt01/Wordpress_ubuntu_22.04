@@ -128,3 +128,9 @@ sed -i "s/password_here/$DATABASE_USERNAME_PASS/g" /var/www/$your_domain/wp-conf
 #echo " */" >> /var/www/$your_domain/wp-config.php
 #echo |curl -s https://api.wordpress.org/secret-key/1.1/salt/ >> /var/www/$your_domain/wp-config.php
 #echo "/**#@-*/" >> /var/www/$your_domain/wp-config.php
+echo ""
+echo ""
+echo ""
+echo ######################################################
+echo ##  WORDPRESS INSTALL FINISH, TO GO HTTP://YOUR_IP  ##
+echo ######################################################
