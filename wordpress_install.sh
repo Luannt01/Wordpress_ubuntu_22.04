@@ -41,7 +41,7 @@ echo "##  Your Wordpress DB is $DATABASE_NAME                    ###"
 echo "##  Your Wordpress DB_USER is $DATABASE_USERNAME           ###"
 echo "##  Your Wordpress DB_USER_PASS is $DATABASE_USERNAME_PASS ###"
 echo "##############################################################"
-sleep 3
+read -p "Please [Enter] to continue..." ignore
 
 ##### Create WORDPRESS DATABASE ###################
 sudo mysql -e "CREATE DATABASE $DATABASE_NAME DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
