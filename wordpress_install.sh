@@ -34,13 +34,19 @@ echo "##### Create WORDPRESS DB_USER ##############"
 read -p "Wordpress database username: " DATABASE_USERNAME
 echo "#####  DB_USER PASSWORD #####################"
 read -p "Wordpress database password: " DATABASE_USERNAME_PASS
-
+clear 
+echo ""
+echo ""
+echo ""
 echo "##############################################################"
 echo "##  Your Mysql root pass is $DATABASE_PASS                 ###"
 echo "##  Your Wordpress DB is $DATABASE_NAME                    ###"
 echo "##  Your Wordpress DB_USER is $DATABASE_USERNAME           ###"
 echo "##  Your Wordpress DB_USER_PASS is $DATABASE_USERNAME_PASS ###"
 echo "##############################################################"
+echo ""
+echo ""
+echo ""
 read -p "Please [Enter] to continue..." ignore
 
 ##### Create WORDPRESS DATABASE ###################
@@ -62,7 +68,7 @@ sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_passwo
 ##### Config Virutal Host #########################
 echo "##### Config Virutal Host ###################"
 echo "##### Input Virtual Host Name ( IP address or Hostname )##############"
-read -p "Input ip address or hostname: " your_domain
+read -p "Wordpress virtual hostname: " your_domain
 sudo mkdir -p /var/www/$your_domain
 sudo chown -R $USER:$USER /var/www/$your_domain
 sudo echo '<VirtualHost *:80>' >  /etc/apache2/sites-available/$your_domain.conf
